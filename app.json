@@ -16,8 +16,8 @@
     "color":"#333",
     "selectedColor": "#308d07",
     "backgroundColor":"#fff",
-    "borderStyle": "white",
-    "position":"top",
+    "borderStyle": "black",
+    "position":"bottom",
     "list": [{
       "pagePath": "pages/cnode/cnode",
       "text": "首页",

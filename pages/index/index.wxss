@@ -1,8 +1,14 @@
 /**index.wxss**/
 .userinfo {
+  width:100%;
+  padding:50rpx 0;
+  height:400rpx;
+  background-color: #eee;
   display: flex;
+  font-size: 28rpx;
   flex-direction: column;
   align-items: center;
+  box-sizing:border-box;
 }
 
 .userinfo-avatar {
@@ -10,6 +16,7 @@
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+  box-shadow:0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .userinfo-nickname {
@@ -17,5 +24,6 @@
 }
 
 .usermotto {
-  margin-top: 200px;
+  text-align: center;
+  margin-top: 50rpx;
 }

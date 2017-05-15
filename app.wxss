@@ -1,5 +1,5 @@
 /**app.wxss**/
-.container {
+/*.container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,53 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15)
+}*/
+.text-primary{
+  color:#80bd01;
 }
-page{
-  box-shadow:inset 0rpx 4rpx 1rpx rgba(0,0,0,0.1);
-} 
+.text-muted{
+  color:#777;
+}
+
+.dib{
+  display: inline-block;
+}
+.tc{
+  text-align: center;
+}
+.fl{
+  float:left;
+}
+.fr{
+  float:right;
+}
+.label {
+  padding:5rpx 8rpx;
+  color:#444;
+  font-size:22rpx;
+  border-radius:6rpx;
+  margin-right: 4rpx;
+  background-color: #eee;
+}
+.label-primary{
+  color:#fff;
+  background-color: #80bd01;
+}
+.label-danger{
+  color:#fff;
+  background-color: #fb4944;
+}
+.label-warning{
+  color:#fff;
+  background-color: #f89406;
+}
+.label-info{
+  color:#fff;
+  background-color: #80bd01;
+}
+.elli{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow:hidden;
+}
