@@ -1,0 +1,26 @@
+<page>
+  <!--detail.wxml-->
+  <import src="/utils/wxParse/wxParse.wxml" />
+  <import src="/pages/common/itemTag.wxml" />
+  <view class="detail-content">
+
+    <view class="h2 detail-title">
+      <template is="itemTag" data="{{item:detail}}" /> {{detail.title}}
+    </view>
+    <view class="text-muted detail-info mt20" wx:if="{{detail.title}}">
+      <text class="dot">发布于 {{detail.create_at}}</text>
+      <text class="dot">作者 {{detail.author.loginname}}</text>
+      <text class="dot">{{detail.visit_count}} 次浏览</text>
+      <text class="dot"> 来自
+        <text wx:if="{{detail.tab === 'share'}}">分享</text>
+        <text wx:if="{{detail.tab === 'ask'}}">"问答</text>
+        <text wx:if="{{detail.tab==='job'}}">招聘</text>
+      </text>
+    </view>
+
+    <!--//这里data中article为bindName-->
+    <view class="detail-article">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+</page>

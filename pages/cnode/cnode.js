@@ -14,6 +14,7 @@ Page({
       { id: "ask", name: "问答" },
       { id: "job", name: "招聘" }
     ],
+    todetails:"/pages/detail/detail?id=",
     activeIndex:0,
     param:{
       page: 1,
@@ -31,14 +32,13 @@ Page({
     this.getListData(this.data.param);
   },
 
-
-
+  /**
+   * 标签分类切换事件
+   */ 
   onTapTag:function(e){
       var that = this;
       var tab = e.currentTarget.dataset.id;
-      
       var index = e.currentTarget.dataset.index;
-      console.log(tab, index);
       that.setData({
         activeIndex: index,
         "param.tab": tab,
@@ -46,11 +46,6 @@ Page({
       });
 
       this.getListData(this.data.param);
-      // if (tab !== 'all') {
-      //   this.getListData(this.data.param);
-      // } else {
-      //   that.getListData();
-      // }
   },
 
   /**
@@ -61,38 +56,20 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 监听用户下拉动作--获取最新数据
    */
   onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+    // wx.showNavigationBarLoading()
+    this.setData({
+      "param.page": 1
+    });
+    this.getListData(this.data.param,function(){
+      wx.stopPullDownRefresh({
+        complete: function (res) {
+          // wx.hideNavigationBarLoading()
+        }
+      })
+    });
   },
 
   /**
@@ -107,8 +84,7 @@ Page({
    */
   onReachBottom: function () {
     this.data.param.page += 1;
-    this.getListData(this.data.param,function(){
-    })
+    this.getListData(this.data.param)
   },
 
   /**
@@ -116,15 +92,17 @@ Page({
    */
   getListData: function (param,cb) {
     var _this = this;
-    wx.showLoading({
-      title: '加载中...',
-    });
-
+    wx.showNavigationBarLoading()
+    
+    /**
+     *  page==1 更新列表
+     */
     if (param.page==1){
       _this.setData({
         list:[]
       })
     }
+
     wx.request({
       url: 'https://cnodejs.org/api/v1/topics',
       data: param,
@@ -141,7 +119,7 @@ Page({
             })
           }
         }
-        wx.hideLoading();
+        wx.hideNavigationBarLoading()
         typeof cb === "function" && cb();
       }
     })

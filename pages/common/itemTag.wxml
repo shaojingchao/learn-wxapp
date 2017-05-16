@@ -1,0 +1,8 @@
+<!--话题标签 itemTag 组件 -->
+<template name="itemTag">
+  <text class="label label-primary" wx:if="{{item.tab === 'share'}}">分享</text>
+  <text class="label label-primary" wx:if="{{item.tab === 'ask'}}">问答</text>
+  <text class="label label-primary" wx:if="{{item.tab === 'job'}}">招聘</text>
+  <text class="label label-danger" wx:if="{{item.top}}">置顶</text>
+  <text class="label label-warning" wx:if="{{item.good}}">精华</text>
+</template>

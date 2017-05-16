@@ -3,6 +3,7 @@
     
     "pages/cnode/cnode",
     "pages/index/index",
+    "pages/detail/detail",
     "pages/logs/logs"
   ],
   "window":{

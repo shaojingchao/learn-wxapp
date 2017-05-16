@@ -1,26 +1,25 @@
-<!--cnode.wxml-->
-<view class="tab-head">
-  <view class="tab-item {{index == activeIndex ? 'tab-item-active' : ''}}"
-   bindtap="onTapTag" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{tab}}" wx:key="{{item}}">{{item.name}}</view>
-</view>
-
-<view class="content-list">
-  <view class="list-item" wx:for="{{list}}"  wx:key="{{item.id}}">
-    <image class="user-photo" src="{{item.author.avatar_url}}"></image>
-    <view class="item-text">
-      <view class="item-title elli">
-        <text class="label label-primary" wx:if="{{item.tab === 'share'}}">分享</text>
-        <text class="label label-primary" wx:if="{{item.tab === 'ask'}}">问答</text>
-        <text class="label label-primary" wx:if="{{item.tab === 'job'}}">招聘</text>
-        <text class="label label-danger" wx:if="{{item.top}}">置顶</text>
-        <text class="label label-warning" wx:if="{{item.good}}">精华</text>
-          {{item.title}}
-        </view>
-      <view class="item-info">
-        <text class="user-name">{{item.author.loginname}}</text>
-        <text class="text-muted">{{item.reply_count}}/<text style="color:#999;">{{item.visit_count}}</text></text>
-        <text class="text-muted fr">{{item.last_reply_at}}</text>
-      </view>
-    </view>
+<page>
+  <import src="/pages/common/itemTag.wxml" />
+  <!--cnode.wxml-->
+  <view class="tab-head">
+    <view class="tab-item {{index == activeIndex ? 'tab-item-active' : ''}}" bindtap="onTapTag" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{tab}}" wx:key="{{item}}">{{item.name}}</view>
   </view>
-</view>
+  <view class="content-list">
+    <navigator url="{{todetails + item.id}}" hover-class="navigator-hover" wx:for="{{list}}" wx:key="{{item.id}}">
+      <view class="list-item">
+        <image class="user-photo" src="{{item.author.avatar_url}}"></image>
+        <view class="item-text">
+          <view class="item-title elli">
+            <template is="itemTag" data="{{item}}" /> {{item.title}}
+          </view>
+          <view class="item-info">
+            <text class="user-name">{{item.author.loginname}}</text>
+            <text class="text-muted">{{item.reply_count}}<text style="color:#999;">|{{item.visit_count}}</text>
+            </text>
+            <text class="text-muted fr">{{item.last_reply_at}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</page>

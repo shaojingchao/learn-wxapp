@@ -1,0 +1,17 @@
+/* detail.wxss */
+.detail-content{
+  padding:20rpx;
+}
+.detail-title .label{
+  font-size:30rpx;
+
+}
+.detail-info{
+  font-size:28rpx;
+}
+.detail-info .dot{
+  margin-right:10rpx;
+}
+.detail-article{
+  padding-top:40rpx;
+}

@@ -9,6 +9,38 @@
   box-sizing: border-box;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15)
 }*/
+
+
+/*在使用的Wxss中引入WxParse.css,可以在app.wxss*/
+@import "/utils/wxParse/wxParse.wxss";
+
+page{
+  font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,sans-serif;
+  font-size:28rpx;
+}
+
+.h1{
+  font-size:60rpx;
+}
+.h2{
+  font-size:50rpx;
+}
+.h3{
+  font-size:40rpx;
+}
+.h4{
+  font-size:32rpx;
+}
+.h5{
+  font-size:28rpx;
+}
+.h6{
+  font-size:24rpx;
+}
+
+.dot:before{
+  content:"•"
+}
 .text-primary{
   color:#80bd01;
 }
@@ -28,10 +60,49 @@
 .fr{
   float:right;
 }
+.mt10{
+  margin-top:10rpx;
+}
+.mt20{
+  margin-top:20rpx;
+}
+.mt30{
+  margin-top:30rpx;
+}
+.mr10{
+  margin-right:10rpx;
+}
+.mr20{
+  margin-right:20rpx;
+}
+.mr30{
+  margin-right:30rpx;
+}
+.ml10{
+  margin-left:10rpx;
+}
+.ml20{
+  margin-left:20rpx;
+}
+.ml30{
+  margin-left:30rpx;
+}
+.mb10{
+  margin-bottom:10rpx;
+}
+.mb20{
+  margin-bottom:20rpx;
+}
+.mb30{
+  margin-bottom:30rpx;
+}
 .label {
-  padding:5rpx 8rpx;
+  display:inline-block;
+  padding:6rpx 8rpx;
   color:#444;
   font-size:22rpx;
+  height:1em;
+  line-height:1.3em;
   border-radius:6rpx;
   margin-right: 4rpx;
   background-color: #eee;
