@@ -20,7 +20,7 @@ import HtmlToJson from './html2json.js';
 /**
  * 主函数入口区
  **/
-function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:red;">数据不能为空</div>', target,imagePadding) {
+function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:red;">数据不能为空</div>', target,imagePadding,cb) {
   var that = target;
   var transData = {};//存放转化后的数据
   if (type == 'html') {
@@ -42,6 +42,9 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   that.setData(bindData)
   that.wxParseImgLoad = wxParseImgLoad;
   that.wxParseImgTap = wxParseImgTap;
+
+  // 回调函数
+  typeof cb === "function" && cb()
 }
 // 图片点击事件
 function wxParseImgTap(e) {

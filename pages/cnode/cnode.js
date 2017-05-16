@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    animationData: {},
     tab:[
       { id: "all", name: "全部" },
       { id: "good", name: "精华" },
@@ -29,7 +30,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getListData(this.data.param);
+    this.getListData(this.data.param,function(){
+      // this.createAnim();
+    });
+  },
+
+/**
+ * 显示动画
+ */ 
+  onShow: function () {
+    
   },
 
   /**
@@ -45,14 +55,31 @@ Page({
         "param.page": 1
       });
 
-      this.getListData(this.data.param);
+      that.getListData(that.data.param,function(){
+        // that.createAnim();
+      });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+/**
+ * 创建动画
+ */
+  createAnim:function(){
+    var _this = this;
+    var animation = wx.createAnimation({
+      duration: 1200,
+      timingFunction: 'ease',
+    })
+    _this.animation = animation
+    animation.opacity(1).translate(0, -50).step()
+    _this.setData({
+      animationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.opacity(1).translate(0, 0).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 300)
   },
 
   /**
@@ -76,7 +103,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
   },
 
   /**
@@ -123,6 +149,5 @@ Page({
         typeof cb === "function" && cb();
       }
     })
-  
   }
 })

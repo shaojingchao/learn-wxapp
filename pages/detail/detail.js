@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.showNavigationBarLoading()
     var _this = this;
     wx.request({
       url: 'https://cnodejs.org/api/v1/topic/' + options.id,
@@ -27,10 +27,14 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           if (res.data.success === true) {
-            // var newList = _this.data.detail.concat(res.data.data.map(function (item) {
-            //   item.last_reply_at = util.getDateDiff(new Date(item.last_reply_at));
-            //   return item;
-            // }));
+            
+            var newData = res.data.data;
+            newData.create_at = util.getDateDiff(new Date(newData.create_at))
+            console.log(newData);
+            _this.setData({
+              detail: newData,
+              item: newData
+            })
 
             var article = res.data.data.content;
             /**
@@ -41,80 +45,16 @@ Page({
             * 4.target为Page对象,一般为this(必填)
             * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
             */
-            WxParse.wxParse('article', 'md', article, _this, 5);
-            var newData = res.data.data;
+            WxParse.wxParse('article', 'md', article, _this, 5, function () {
+              wx.hideNavigationBarLoading()
+              typeof cb === "function" && cb();
+            });
 
-            console.log(util.getDateDiff(new Date(newData.create_at)));
-            newData.create_at = util.getDateDiff(new Date(newData.create_at))
-            console.log(newData);
-            _this.setData({
-              detail: newData,
-              item: newData
-            })
           }
         }
-        wx.hideNavigationBarLoading()
-        typeof cb === "function" && cb();
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

@@ -6,7 +6,7 @@
   </view>
   <view class="content-list">
     <navigator url="{{todetails + item.id}}" hover-class="navigator-hover" wx:for="{{list}}" wx:key="{{item.id}}">
-      <view class="list-item">
+      <view class="list-item" animation="{{animationData}}">
         <image class="user-photo" src="{{item.author.avatar_url}}"></image>
         <view class="item-text">
           <view class="item-title elli">
